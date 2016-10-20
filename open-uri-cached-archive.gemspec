@@ -6,7 +6,7 @@ require 'open-uri-cached-archive/version'
 Gem::Specification.new do |spec|
   spec.name          = 'open-uri-cached-archive'
   spec.version       = OpenUriCachedArchive::VERSION
-  spec.authors       = ['Chris Mytton']
+  spec.authors       = ['EveryPolitician']
   spec.email         = ['team@everypolitician.org']
 
   spec.summary       = 'Read responses from open-uri-cached archive directories'
