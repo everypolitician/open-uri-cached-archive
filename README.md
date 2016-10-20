@@ -11,6 +11,11 @@ require 'open-uri-cached-archive'
 
 OpenUriCachedArchive.new('.cache').responses.each do |response|
   # response has the same methods as a regular open-uri response
+  response.read         # => "<!DOCTYPE html>\n<html>\n<head>..."
+  response.status       # => ["200", "OK"]
+  response.content_type # => "text/html"
+  response.meta         # => {"cache-control"=>"max-age=604800", [...] }
+  response.base_uri     # => #<URI::HTTP http://example.com/>
 end
 ```
 
