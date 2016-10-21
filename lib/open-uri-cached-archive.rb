@@ -7,7 +7,7 @@ class OpenUriCachedArchive
   end
 
   def responses
-    Dir.glob(File.join(path, '**', '*.meta')).map do |meta_file_path|
+    Pathname.glob(File.join(path, '**', '*.meta')).map do |meta_file_path|
       CachedResponse.new(meta_file_path).open_uri_response
     end
   end
