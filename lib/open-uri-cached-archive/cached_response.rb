@@ -11,9 +11,9 @@ class OpenUriCachedArchive
     def open_uri_response
       StringIO.new(body).tap do |response|
         OpenURI::Meta.init(response)
-        meta.each { |k, v| response.meta_add_field(k, v) }
         response.status = meta.delete(:status)
         response.base_uri = meta.delete(:base_uri)
+        meta.each { |k, v| response.meta_add_field(k, v) }
       end
     end
 

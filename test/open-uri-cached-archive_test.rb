@@ -35,5 +35,16 @@ describe OpenUriCachedArchive do
     it 'allows you to access headers' do
       cache.responses.first.meta['server'].must_equal 'Google Frontend'
     end
+
+    it 'contains the expected header keys' do
+      cache.responses.first.meta.keys.must_equal [
+        'access-control-allow-origin',
+        'content-type',
+        'x-cloud-trace-context',
+        'date',
+        'server',
+        'content-length',
+      ]
+    end
   end
 end
