@@ -5,9 +5,8 @@ require 'open-uri'
 class OpenUriCachedArchive
   class CachedResponse
     def initialize(meta_file_path)
-      @meta = YAML.load_file(meta_file_path)
+      @meta_file_path = meta_file_path
       @body = meta_file_path.sub_ext('').read
-      meta.delete(:content_type)
     end
 
     def open_uri_response
@@ -21,6 +20,13 @@ class OpenUriCachedArchive
 
     private
 
-    attr_reader :meta, :body
+    attr_reader :meta_file_path, :body
+
+    def meta
+      @meta ||= YAML.load_file(meta_file_path).tap do |m|
+        # This field already exists as "content_type" in meta, so delete it.
+        m.delete(:content_type)
+      end
+    end
   end
 end
