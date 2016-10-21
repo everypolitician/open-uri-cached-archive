@@ -6,7 +6,7 @@ class OpenUriCachedArchive
   class CachedResponse
     def initialize(meta_file_path)
       @meta = YAML.load_file(meta_file_path)
-      @body = File.read(meta_file_path.gsub(/\.meta$/, ''))
+      @body = meta_file_path.sub_ext('').read
       @status = meta.delete(:status)
       @base_uri = meta.delete(:base_uri)
       meta.delete(:content_type)
