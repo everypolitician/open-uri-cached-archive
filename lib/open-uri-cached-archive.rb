@@ -4,7 +4,7 @@ require 'stringio'
 require 'open-uri'
 
 class OpenUriCachedArchive
-  class Response
+  class CachedResponse
     def initialize(meta_file)
       @meta = YAML.load_file(meta_file)
       @body = File.read(meta_file.gsub(/\.meta$/, ''))
@@ -33,7 +33,7 @@ class OpenUriCachedArchive
 
   def responses
     Dir.glob(File.join(path, '**', '*.meta')).map do |meta_file|
-      Response.new(meta_file).open_uri_response
+      CachedResponse.new(meta_file).open_uri_response
     end
   end
 
