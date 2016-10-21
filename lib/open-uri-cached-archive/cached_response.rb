@@ -6,7 +6,6 @@ class OpenUriCachedArchive
   class CachedResponse
     def initialize(meta_file_path)
       @meta_file_path = meta_file_path
-      @body = meta_file_path.sub_ext('').read
     end
 
     def open_uri_response
@@ -20,7 +19,11 @@ class OpenUriCachedArchive
 
     private
 
-    attr_reader :meta_file_path, :body
+    attr_reader :meta_file_path
+
+    def body
+      @body ||= meta_file_path.sub_ext('').read
+    end
 
     def meta
       @meta ||= YAML.load_file(meta_file_path).tap do |m|
