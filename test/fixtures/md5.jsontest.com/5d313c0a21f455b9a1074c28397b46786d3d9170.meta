@@ -1,0 +1,23 @@
+---
+access-control-allow-origin: "*"
+content-type: application/json; charset=ISO-8859-1
+x-cloud-trace-context: 97e9fdbb01a0b7c93ed2c605ea42ace3
+date: Fri, 21 Oct 2016 09:13:16 GMT
+server: Google Frontend
+content-length: '71'
+:status:
+- '200'
+- OK
+:content_type: application/json
+:base_uri: !ruby/object:URI::HTTP
+  scheme: http
+  user: 
+  password: 
+  host: md5.jsontest.com
+  port: 80
+  path: "/"
+  query: text=foo
+  opaque: 
+  registry: 
+  fragment: 
+  parser: 
