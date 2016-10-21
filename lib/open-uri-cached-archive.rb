@@ -5,9 +5,9 @@ require 'open-uri'
 
 class OpenUriCachedArchive
   class CachedResponse
-    def initialize(meta_file)
-      @meta = YAML.load_file(meta_file)
-      @body = File.read(meta_file.gsub(/\.meta$/, ''))
+    def initialize(meta_file_path)
+      @meta = YAML.load_file(meta_file_path)
+      @body = File.read(meta_file_path.gsub(/\.meta$/, ''))
       @status = meta.delete(:status)
       @base_uri = meta.delete(:base_uri)
       meta.delete(:content_type)
@@ -32,8 +32,8 @@ class OpenUriCachedArchive
   end
 
   def responses
-    Dir.glob(File.join(path, '**', '*.meta')).map do |meta_file|
-      CachedResponse.new(meta_file).open_uri_response
+    Dir.glob(File.join(path, '**', '*.meta')).map do |meta_file_path|
+      CachedResponse.new(meta_file_path).open_uri_response
     end
   end
 
